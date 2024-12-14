@@ -6,12 +6,30 @@ import at.campus02.swe.CalculatorException;
 
 import java.util.Stack;
 
+import static at.campus02.swe.Calculator.Operation.cos;
+import static at.campus02.swe.Calculator.Operation.sin;
+
 public class CalculatorImpl implements Calculator {
 
     private Stack<Double> stack_ = new Stack<Double>();
 
+    private double performSingleOperation(Operation op) throws CalculatorException {
+        double a = pop();
+
+        switch (op) {
+            case cos:
+                return (Math.cos(Math.toRadians(a % 360)));
+            case sin:
+                return (Math.sin(Math.toRadians(a % 360)));
+        }
+
+        return 0.0;
+
+    }
+
     @Override
     public double perform(Operation op) throws CalculatorException {
+        if (op == sin || op == cos) return performSingleOperation(op);
 
         double b = pop();
         double a = pop();

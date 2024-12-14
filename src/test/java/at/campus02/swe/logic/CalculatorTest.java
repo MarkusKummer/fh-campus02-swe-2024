@@ -120,4 +120,24 @@ public class CalculatorTest {
             assertEquals("Division by zero", e.getMessage());
         }
     }
+
+    @Test
+    public void testCosOperation() throws CalculatorException {
+        Calculator calc = new CalculatorImpl();
+        calc.push(48);
+
+        double result = calc.perform(Operation.cos);
+
+        assertEquals(0.6691306063588582, result, 0);
+    }
+
+    @Test
+    public void testSinOperation() throws CalculatorException {
+        Calculator calc = new CalculatorImpl();
+        calc.push(90);
+
+        double result = calc.perform(Operation.sin);
+
+        assertEquals(1.0, result, 0);
+    }
 }
