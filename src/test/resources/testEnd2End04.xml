@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<calculation>
+    <push value="4" />
+    <push value="90" />
+    <operation value="*" />
+    <push value="Result" />
+    <operation value="cos" />
+</calculation>

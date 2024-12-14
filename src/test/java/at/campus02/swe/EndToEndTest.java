@@ -21,6 +21,16 @@ public class EndToEndTest {
         assertEquals(6, parseTestXml("src/test/resources/testEnd2End02.xml"), 0);
     }
 
+    @Test
+    public void testParserTest03XmlSin() throws Exception {
+        assertEquals(34, parseTestXml("src/test/resources/testEnd2End03.xml"), 0);
+    }
+
+    @Test
+    public void testParserTest04XmlCos() throws Exception {
+        assertEquals(1, parseTestXml("src/test/resources/testEnd2End04.xml"), 0);
+    }
+
     private double parseTestXml(String xmlFile) throws CalculatorException, XMLStreamException, FileNotFoundException {
         Calculator cal = new CalculatorImpl();
 
