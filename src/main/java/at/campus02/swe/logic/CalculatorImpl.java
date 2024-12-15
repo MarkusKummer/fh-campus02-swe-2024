@@ -4,10 +4,10 @@ package at.campus02.swe.logic;
 import at.campus02.swe.Calculator;
 import at.campus02.swe.CalculatorException;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
-import static at.campus02.swe.Calculator.Operation.cos;
-import static at.campus02.swe.Calculator.Operation.sin;
+import static at.campus02.swe.Calculator.Operation.*;
 
 public class CalculatorImpl implements Calculator {
 
@@ -27,9 +27,41 @@ public class CalculatorImpl implements Calculator {
 
     }
 
+    private double performScalarproduct(Operation op) throws CalculatorException {
+        int size = (int) pop();
+
+        double[] a = new double[size];
+        double[] b = new double[size];
+
+        for(int i = 0; i < size; i++) {
+            try{
+                b[i] = pop();
+            } catch (CalculatorException e) {
+                throw new CalculatorException("Not Enough Elements", e);
+            }
+        }
+
+        for(int i = 0; i < size; i++) {
+            try{
+                a[i] = pop();
+            } catch (CalculatorException e) {
+                throw new CalculatorException("Not Enough Elements", e);
+            }
+        }
+
+        double returnValue = 0;
+        for(int i = 0; i < size; i++) {
+            returnValue += a[i] * b[i];
+        }
+
+        return returnValue;
+
+    }
+
     @Override
     public double perform(Operation op) throws CalculatorException {
         if (op == sin || op == cos) return performSingleOperation(op);
+        if (op == dotproduct) return performScalarproduct(op);
 
         double b = pop();
         double a = pop();
